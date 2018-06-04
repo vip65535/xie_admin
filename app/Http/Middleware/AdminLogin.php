@@ -12,6 +12,7 @@ class AdminLogin
     protected $except = [
         '/login',
         '/code',
+        '/loginOut',
     ];
     public function handle($request, Closure $next, $guard = null)
     {
@@ -28,7 +29,10 @@ class AdminLogin
             return redirect('/index');
         }
         $roles = Functions::getByAdminId($admin->id);
-        if(in_array(explode("?",$uri)[0],array_column($roles,'href'))||$admin->id==1){
+        list($url) =  explode("?",$uri);
+        $roles = array_column($roles,'href');
+        $roles[] ='/index';
+        if(in_array($url,$roles)||$admin->id==1){
             return $next($request);
         }else{
             if($method=="GET"){

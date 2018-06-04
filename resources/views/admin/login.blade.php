@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('css/admin/login.css')}}" media="all" />
 </head>
 <body>
-<div class="video_mask"></div>
+<div class="video_mask" style="background:url(images/bg.jpg);min-width: 100%; min-height: 100%;"></div>
 <div class="login">
     <h1>管理登录</h1>
     <form class="layui-form" action="login" method="post">
@@ -25,7 +25,7 @@
         </div>
         <div class="layui-form-item form_code">
             <input class="layui-input" name="code" value="" placeholder="验证码" lay-verify="required" type="text" autocomplete="off">
-            <div class="code"><img src="code" width="116" height="36"></div>
+            <div class="code"><img id="refresh" src="code" onclick="document.getElementById('refresh').src='code?t='+Math.random()" width="116" height="36"></div>
         </div>
         <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登录</button>
         <div class="layui-bg-red" style="text-align: center;margin-top:5px;">

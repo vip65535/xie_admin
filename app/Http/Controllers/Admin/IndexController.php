@@ -21,7 +21,7 @@ class IndexController extends AdminBaseController
     }
     protected static function loginOut(){
         Session::remove("admin");
-        return redirect("admin/index");
+        return redirect("/index");
     }
     protected static function code(){
         header("Content-type: image/JPEG");

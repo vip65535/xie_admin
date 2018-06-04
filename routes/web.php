@@ -11,12 +11,13 @@
 |
 */
 
+Route::get('/404',"Admin\IndexController@error");
+Route::get('/code',"Admin\IndexController@code");
+Route::get('/login',"Admin\IndexController@login");
+Route::post('/login',"Admin\IndexController@dologin");
+
 
 Route::prefix("/")->middleware(['adminLogin'])->namespace('Admin')->group(function(){
-    Route::get('/code',"IndexController@code");
-    Route::get('/404',"IndexController@error");
-    Route::get('/login',"IndexController@login");
-    Route::post('/login',"IndexController@dologin");
     Route::get('/loginOut',"IndexController@loginOut");
     Route::get('/index',"IndexController@index");
     Route::get('/adminSys',"AdminSysController@index");
