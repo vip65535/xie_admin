@@ -33,7 +33,10 @@ class Functions extends Model
         return Functions::find($id);
     }
     public   static  function getByAdminId($id=0){
-        return DB::select("select a.* from functions a left join role_functions b on a.id=b.functions_id left join admin_role c on b.role_id = c.role_id where c.admin_id=?",[$id]);
+        $roleid =AdminRole::where("admin_id",$id)->pluck("role_id");
+        $functionids = RoleFunctions::whereIn("role_id",$roleid)->pluck("functions_id");
+        $functions = Functions::whereIn("id",$functionids)->get();
+        return $functions->toArray();
     }
 
     public static function getByList($columns,$currentPage,$perPage,$input,$orderby,$is_page=true){
@@ -69,9 +72,6 @@ class Functions extends Model
         $param[]= ['created_at', '>=', $startTime];
         $param[]= ['created_at', '<=', $endTime];
     }
-    /*DB::listen(function($sql) {
-        var_dump($sql->sql) ;
-    });*/
     list($key,$asc) = explode(" ",$orderby);
 
     if($is_page){
@@ -95,9 +95,11 @@ class Functions extends Model
                 $pmenu->child=Functions::where("pid",$pmenu->id)->where("type","2")->orderBy('sort','desc')->get();
             }
         }else{
-            $p_menus =  DB::select("select a.* from functions a left join role_functions b on a.id=b.functions_id left join admin_role c on b.role_id = c.role_id where a.pid=0 and c.admin_id=? order by a.sort desc",[$admin->id]);
+            $roleid =AdminRole::where("admin_id",$admin->id)->pluck("role_id");
+            $functionids = RoleFunctions::whereIn("role_id",$roleid)->pluck("functions_id");
+            $p_menus = Functions::whereIn("id",$functionids)->where("pid",0)->get();
             foreach ($p_menus as &$pmenu){
-                $pmenu->child =  DB::select("select a.* from functions a left join role_functions b on a.id=b.functions_id left join admin_role c on b.role_id = c.role_id where a.pid=? and c.admin_id=? order by a.sort desc",[$pmenu->id,$admin->id]);
+                $pmenu->child = Functions::where("pid",$pmenu->id)->get();
             }
         }
         return $p_menus;
