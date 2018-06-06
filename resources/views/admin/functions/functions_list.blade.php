@@ -37,7 +37,7 @@
                         <div class="layui-col-md9">
 
                             <form id="myform" class="layui-form" action="functions/add" method="post">
-                                <div class="layui-form-item">
+                                <div style="display: none;" class="layui-form-item">
                                     <label class="layui-form-label">父节点</label>
                                     <div class="layui-input-block">
                                         <input type="text" name="id" value="" class="layui-input newsName" disabled="disabled" placeholder="id">

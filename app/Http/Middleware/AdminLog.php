@@ -12,7 +12,7 @@ class AdminLog
     {
         if (!empty(Session::get("admin"))) {
             $admin = Session::get("admin");
-            if(strpos($request->getPathInfo(),env("ADMIN_PATH").'/adminLog/getList')){
+            if('/adminLog/lists'==$request->getPathInfo()){
                 return $next($request);
             }
             \App\Model\AdminLog::create(array(

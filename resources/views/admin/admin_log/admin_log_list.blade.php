@@ -42,11 +42,8 @@
                                 <input type="text" name="url" value="{{$url or ''}}" placeholder="请输入访问链接" class="layui-input search_input">
                             </div>
                             <div class="layui-input-inline">
-                                <input type="text" name="param" value="{{$param or ''}}" placeholder="请输入请求数据" class="layui-input search_input">
-                            </div>
-                            <div class="layui-input-inline">
                                 <input type="text" name="setime" value="{{$setime or ''}}" class="layui-input" id="test10" placeholder="开始结束时间">
-                            </div><br>
+                            </div>
                             <a class="layui-btn search_btn" onclick="mysearch();"><i class="iconfont icon-sousuo"></i>查询</a>
                             @if(\App\Model\Admin::isAuth("/admin/adminLog/export"))
                             <a href="javascript:exportTable();" class="layui-btn search_btn" ><i class="iconfont icon-xiazai"></i>导出</a>

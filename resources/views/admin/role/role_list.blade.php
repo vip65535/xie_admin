@@ -28,7 +28,7 @@
             <div class="layui-tab-content clildFrame">
                 <div class="layui-tab-item layui-show" style="padding:20px;">
                     <!--主体开始-->
-                    <form id="myform" action="getList" method="get">
+                    <form id="myform" action="lists" method="get">
                     <blockquote class="layui-elem-quote news_search">
                         <input type="text" id="curr_p" name="p" value="1" hidden />
                         <div class="layui-inline">
@@ -37,12 +37,6 @@
                             </div>
                             <div class="layui-input-inline">
                                  <input type="text" name="name" value="{{$name or ''}}" placeholder="请输入角色名称" class="layui-input search_input">
-                            </div>
-                            <div class="layui-input-inline">
-                                 <input type="text" name="created_at" value="{{$created_at or ''}}" placeholder="请输入" class="layui-input search_input">
-                            </div>
-                            <div class="layui-input-inline">
-                                 <input type="text" name="updated_at" value="{{$updated_at or ''}}" placeholder="请输入" class="layui-input search_input">
                             </div>
                             <div class="layui-input-inline">
                                 <input type="text" name="setime" value="{{$setime or ''}}" class="layui-input" id="test10" placeholder="开始结束时间">
