@@ -6,7 +6,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class {{$TableName}} extends Model
+class {{$TableName}} extends BaseModel
 {
     protected $table = "{{$table_name}}";
     public $timestamps = true;

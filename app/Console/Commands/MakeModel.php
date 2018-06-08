@@ -58,12 +58,12 @@ class MakeModel extends Command
     public function makeFunctions($data){
         var_dump($data['table_comment']);
         var_dump($data['tableName']);
-        Functions::deleteByHref("/".$data['tableName']."/getList");
+        Functions::deleteByHref("/".$data['tableName']."/lists");
         $pf = new Functions;
         $pf->pid=0;
         $pf->type=2;
         $pf->name=$data['table_comment'];
-        $pf->href="/".$data['tableName']."/getList";
+        $pf->href="/".$data['tableName']."/lists";
         $pf->save();
 
         $functions = new Functions;
@@ -84,7 +84,7 @@ class MakeModel extends Command
         $functions->pid=$pf->id;
         $pf->type=1;
         $functions->name="查询权限";
-        $functions->href="/".$data['tableName']."/getList";
+        $functions->href="/".$data['tableName']."/lists";
         $functions->save();
 
         $functions = new Functions;
@@ -99,6 +99,13 @@ class MakeModel extends Command
         $pf->type=1;
         $functions->name="查看权限";
         $functions->href="/".$data['tableName']."/show";
+        $functions->save();
+
+        $functions = new Functions;
+        $functions->pid=$pf->id;
+        $pf->type=1;
+        $functions->name="导出权限";
+        $functions->href="/".$data['tableName']."/export";
         $functions->save();
 
 

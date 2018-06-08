@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
-class BaseDao extends Model
+class BaseModel extends Model
 {
     protected static function getPage($sql,$param,$p=1,$pageSize=10,$pageName='p',$path="",$urlParam)
     {

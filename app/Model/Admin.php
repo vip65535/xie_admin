@@ -39,7 +39,6 @@ class Admin extends Model
     }
     public  static  function isAuth($uri){
         $admin =Session::get("admin");
-        $uri = "/".$uri;
         $roles = Functions::getByAdminId($admin->id);
         if(in_array($uri,array_column($roles,'href'))||$admin->id==1){
             return true;

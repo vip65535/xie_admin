@@ -39,7 +39,7 @@
             <div class="layui-tab-content clildFrame">
                 <div class="layui-tab-item layui-show" style="padding:20px;">
                     <!--主体开始-->
-                    <form id="myform" action="getList" method="get">
+                    <form id="myform" action="lists" method="get">
                     <blockquote class="layui-elem-quote news_search">
                         <input type="text" id="curr_p" name="p" value="{{$p or 1}}" hidden />
                         <div class="layui-inline">
@@ -49,7 +49,7 @@
                                 <select name="<?php echo$colum['column'];?>" class="newsLook"  lay-filter="browseLook">
                                     <option value="" >全部</option>
                                     @@foreach(\App\Model\<?php echo$TableName."::$".strtoupper($colum['column']);?>  as $k=>$v)
-                                        <option value="@{{$k}}" <?php echo '<?php if(!empty($'.$colum['column'].')&&$k==$'.$colum['column'].'){echo "selected";} ?>';?> >@{{$v['name']}}</option>
+                                        <option value="@{{$k}}" <?php echo '<?php if(!empty($'.$colum['column'].')&&$k==$'.$colum['column'].'){echo "selected";} ?>';?> >@{{$k}}--@{{$v['name']}}</option>
                                         @@endforeach
                                 </select>
                             </div>
@@ -159,7 +159,7 @@
                 "id":id,
             },function(data){
                 if(data.code==1){
-                    location.href ="getList";
+                    location.href ="lists";
                 }
             },"json")
             layer.close(index);

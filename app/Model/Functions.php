@@ -99,7 +99,7 @@ class Functions extends Model
             $functionids = RoleFunctions::whereIn("role_id",$roleid)->pluck("functions_id");
             $p_menus = Functions::whereIn("id",$functionids)->where("pid",0)->get();
             foreach ($p_menus as &$pmenu){
-                $pmenu->child = Functions::where("pid",$pmenu->id)->get();
+                $pmenu->child = Functions::where("pid",$pmenu->id)->where("type","2")->get();
             }
         }
         return $p_menus;

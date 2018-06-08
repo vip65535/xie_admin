@@ -16,7 +16,7 @@ class {{$TableName}}Controller extends AdminBaseController
     public $path = 'admin/{{$table_name}}/{{$table_name}}_';
     public $perPage = 10;
 
-    public function getList(Request $request)
+    public function lists(Request $request)
     {
         $input = Input::all();
         $perPage =$this->perPage ;

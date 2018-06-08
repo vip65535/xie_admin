@@ -46,10 +46,10 @@
                 <div class="layui-tab-item layui-show" style="padding:20px;">
                     <!--主体开始-->
                     @@if(strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"add"))
-                        <form id="myForm" class="layui-form" action="add" method="post">
+                        <form id="myForm" class="layui-form layui-form-pane" action="add" method="post">
                     @@endif
                     @@if(strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"edit"))
-                        <form id="myForm" class="layui-form" action="edit" method="post">
+                        <form id="myForm" class="layui-form layui-form-pane" action="edit" method="post">
                     @@endif
 
                         <input hidden name="id" value="{{$<?php echo$tableName;?>->id or ''}}" />
@@ -59,7 +59,7 @@
                                     <div class="layui-form-item">
                                         <div class="layui-inline">
                                             <label class="layui-form-label"><?php echo$colum['simple_column_comment'];?></label>
-                                            <div class="layui-input-inline">
+                                            <div class="layui-input-block">
                                                 <select name="<?php echo$colum['column'];?>" class="newsLook"  lay-filter="browseLook">
                                                     @@foreach(\App\Model\<?php echo$TableName."::$".strtoupper($colum['column']);?>  as $k=>$v)
                                                         <option value="@{{$k}}" <?php echo '<?php if(!empty($'.$tableName.')&&$k==$'.$tableName.'["'.$colum['column'].'"]'.'){echo "selected";} ?>';?> >@{{$v['name']}}</option>
@@ -72,7 +72,7 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label"><?php echo$colum['simple_column_comment'];?></label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="<?php echo$colum['column'];?>" value="{{$<?php echo$tableName;?>-><?php echo$colum['column'];?> or ''}}" class="layui-input newsName" lay-verify="required" placeholder="<?php echo$colum['simple_column_comment']?>">
+                                            <input type="text" style="width:400px;" name="<?php echo$colum['column'];?>" value="{{$<?php echo$tableName;?>-><?php echo$colum['column'];?> or ''}}" class="layui-input newsName" lay-verify="required" placeholder="<?php echo$colum['simple_column_comment']?>">
                                         </div>
                                     </div>
 @endif
@@ -82,7 +82,7 @@
                             <div class="layui-form-item">
                             <div class="layui-input-block">
                                 @@if(!strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"show"))
-                                <button class="layui-btn" lay-submit="" lay-filter="addNews">提交</button>
+                                <button class="layui-btn" lay-submit id="addbutton" lay-filter="addbutton">提交</button>
                                 @@endif
                                 <button type="reset" onclick="javascript:history.go(-1);" class="layui-btn layui-btn-primary">返回</button>
                             </div>
@@ -98,25 +98,42 @@
     @@include("admin/footer")
 </div>
 <script>
-    layui.use('form', function() {
+    layui.use('form', function () {
         var form = layui.form;
-        form.render();
-    })
-    $(function(){
-        $('#myForm').ajaxForm({
-            dataType: "json",
-            beforeSubmit: function() {
-            },
-            success:function(data){
-                layer.msg(data.m);
-                if(data.code==1){
-                    setTimeout(function () {
-                        window.location.href ="getList";
-                    },1000)
-                }
-                return;
+@@if(strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"add"))
+        var path ="add";
+@@endif
+@@if(strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"edit"))
+        var path ="edit";
+@@endif
+        form.on('submit(addbutton)', function(data){
+            $.ajax({
+                dataType: "json",
+                url:path,
+                type:"post",
+                data:data.field,
+                beforeSend: function() {
+                    $("#addbutton").attr("disabled",true);
+                    $("#addbutton").addClass("layui-btn-disabled");
+                },
+                success:function(data){
+                    layer.msg(data.m);
+                    if(data.code){
+                        window.location.href ="lists";
+                    }else{
+                        $("#addbutton").removeAttr("disabled");
+                        $("#addbutton").removeClass("layui-btn-disabled");
+                    }
+                    return false;
+                },error:function(data){
+                    $("#addbutton").removeAttr("disabled");
+                    $("#addbutton").removeClass("layui-btn-disabled");
+                    layer.msg("服务器异常,稍后再试！");
+                    return false;
 
-            }
+                }
+            });
+            return false;
         });
     })
 </script>
