@@ -76,7 +76,7 @@
 .row,.col,.panel_word,.panel_icon{ box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -o-box-sizing:border-box;}
 .row{ margin-left:-10px; overflow:hidden;}
 .col{ padding-left:10px;}
-.panel{float: left; text-align: center; width:16.666%; min-width:210px; margin-bottom: 10px;}
+.panel{float: left; text-align: center; width:25%; min-width:210px; margin-bottom: 10px;}
 .panel_box a{display:block; background-color:#f2f2f2; border-radius:5px; overflow:hidden; }
 .panel_icon{ width:40%; display: inline-block; padding:22px 0; background-color:#54ade8;float:left;}
 .panel_icon i{ font-size:3em; color:#fff;}
@@ -180,6 +180,16 @@
 	.top_menu .layui-nav-item.showNotice[pc]{ display:none !important; }
 	.panel{ width:100%; }
 }
+
+.layui-table td, .layui-table th {
+	text-align: center;
+}
+.layui-table td {
+	padding: 5px;
+}
+.layui-input-inline{margin:10px 5px; }
+.layui-inline a{height:36px;margin:10px 5px; }
+.layui-btn i{margin-right:10px;}
 
 .layui-table td, .layui-table th {
 	text-align: center;

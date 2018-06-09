@@ -44,12 +44,13 @@ class AdminLogController extends AdminBaseController
                 'aid' => 'required',//管理员(int)
                 'method' => 'required',//访问类型(varchar)
                 'url' => 'required',//访问链接(varchar)
-                'param' => 'required',//请求数据(text)
+                'param' => 'required',//请求数据(longtext)
+                'ip' => 'required',//IP地址(varchar)
             ]);
             if ($validator->fails()) {
                 return $this->returnJson(Constant::ERROR,$validator->errors()->first());
             }
-            AdminLog::create($request->all());
+            AdminLog::create(array_filter($request->all()));
             return $this->returnJson(Constant::SUCCESS,"新增成功!");
         }
     }
@@ -65,12 +66,13 @@ class AdminLogController extends AdminBaseController
                 'aid' => 'bail|required',//管理员(int)
                 'method' => 'bail|required',//访问类型(varchar)
                 'url' => 'bail|required',//访问链接(varchar)
-                'param' => 'bail|required',//请求数据(text)
+                'param' => 'bail|required',//请求数据(longtext)
+                'ip' => 'bail|required',//IP地址(varchar)
                       ]);
        if ($validator->fails()) {
             return $this->returnJson(Constant::ERROR,$validator->errors()->first());
        }
-       AdminLog::find($id)->update($request->all());
+       AdminLog::find($id)->update(array_filter($request->all()));
             return $this->returnJson(Constant::SUCCESS,"修改成功!");
        }
 
@@ -82,21 +84,21 @@ class AdminLogController extends AdminBaseController
         $id=  $request->get("id");
         $obj = AdminLog::destroy($id);
         if($obj){
-            return $this->returnJson(1,"成功!");
+            return $this->returnJson(Constant::SUCCESS,"删除成功!");
         }
-        return $this->returnJson(0,"失败!");
+        return $this->returnJson(Constant::ERROR,"删除失败!");
     }
 
     public function export(Request $request)
     {
         $input = Input::all();
         $perPage =$this->perPage ;
-        $columns      = ['id','aid','method','url','param','created_at','updated_at'];
-        $columns_name = ['id','管理员','访问类型','访问链接','请求数据','',''];
+        $columns      = ['id','aid','method','url','param','ip','created_at','updated_at'];
+        $columns_name = ['id','管理员','访问类型','访问链接','请求数据','IP地址','',''];
         $currentPage = $request->get("p",1);
         $lists =  AdminLog::getByList($columns,$currentPage,$perPage,$input,"id desc",false);
         $lists = $lists->toArray();
-        Excel::create('links', function($excel) use($lists,$columns_name){
+        Excel::create('AdminLog-'.date("Ymdhmi"), function($excel) use($lists,$columns_name){
             $excel->sheet('sheet1', function($sheet) use($lists,$columns_name) {
                 $sheet->fromArray($lists);
                 $sheet->row(1,$columns_name);

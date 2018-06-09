@@ -30,50 +30,58 @@
                     <div class="panel_box row">
                         <div class="panel col">
                             <a href="javascript:;" data-url="page/user/allUsers.html">
-                                <div class="panel_icon" style="background-color:#009688;">
+                                <div class="panel_icon" style="background-color:#F0D879;">
                                     <i class="layui-icon" data-icon="&#xe613;">&#xe613;</i>
                                 </div>
                                 <div class="panel_word userAll">
                                     <span>3</span>
-                                    <cite>用户总数</cite>
+                                    <cite>新增人数</cite>
                                 </div>
                             </a>
                         </div>
                         <div class="panel col">
                             <a href="javascript:;" data-url="page/img/images.html">
-                                <div class="panel_icon" style="background-color:#5FB878;">
-                                    <i class="layui-icon" data-icon="&#xe64a;">&#xe64a;</i>
+                                <div class="panel_icon" style="background-color:#248888;">
+                                    <i class="iconfont icon-feiyongshenqing"></i>
                                 </div>
                                 <div class="panel_word imgAll">
                                     <span>4</span>
-                                    <cite>图片总数</cite>
+                                    <cite>交易金额</cite>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel col">
+                            <a href="javascript:;" data-url="page/img/images.html">
+                                <div class="panel_icon" style="background-color:#A099FF;">
+                                    <i class="iconfont icon-jifendingdan"></i>
+                                </div>
+                                <div class="panel_word imgAll">
+                                    <span>4</span>
+                                    <cite>下单次数</cite>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel col">
+                            <a href="javascript:;" data-url="page/img/images.html">
+                                <div class="panel_icon" style="background-color:#E7475E;">
+                                    <i class="iconfont icon-kehuguanli"></i>
+                                </div>
+                                <div class="panel_word imgAll">
+                                    <span>4</span>
+                                    <cite>激活总人数</cite>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <blockquote class="layui-elem-quote explain">
-                        <p>技术交流QQ群：（添加时请注明来自本框架）</p>
-                    </blockquote>
                     <div class="row">
                         <div class="sysNotice col">
-                            <blockquote class="layui-elem-quote title">最新文章<i class="iconfont icon-new1"></i></blockquote>
-                            <table class="layui-table" lay-skin="line">
-{{--
-                                @php
-                                    $rows=\App\Model\Article::getByList(["title"],1,10,array(),"id desc")
-                                @endphp
-                                @foreach($rows as $row)
-                                    <colgroup>
-                                        <col><col width="110">
-                                    </colgroup>
-                                    <tbody class="hot_news">
-                                    <tr><td align="left" style="text-align: left;">{{$row->title or ''}}</td><td>2017-04-14</td></tr>
-
-                                    </tbody>
-                                @endforeach--}}
-
-
-                            </table>
+                            <blockquote class="layui-elem-quote explain">
+                                <p><h3>相关地址</h3></p>
+                                <p>
+                                    github : <a href="https://github.com/iti6/xie_admin" target="_blank">https://github.com/iti6/xie_admin</a><br>
+                                    项目介绍网址 : <a href="http://www.iti6.com" target="_blank">http://www.iti6.com</a>
+                                </p>
+                            </blockquote>
                         </div>
                         <div class="sysNotice col">
                             <blockquote class="layui-elem-quote title">系统基本参数</blockquote>
@@ -92,16 +100,20 @@
                                     <td class="author">{{env('APP_NAME')}}</td>
                                 </tr>
                                 <tr>
-                                    <td>网站首页</td>
-                                    <td class="homePage">xiely.cn</td>
+                                    <td>laravel版本</td>
+                                    <td class="server">5.5</td>
                                 </tr>
                                 <tr>
-                                    <td>服务器环境</td>
-                                    <td class="server">{{env('APP_ENV')}}</td>
+                                    <td>ui框架</td>
+                                    <td class="server">layui</td>
                                 </tr>
                                 <tr>
-                                    <td>数据库版本</td>
-                                    <td class="dataBase">mysql 5.7</td>
+                                    <td>推荐服务器环境</td>
+                                    <td class="server">nginx+php7.1+mysql5.6</td>
+                                </tr>
+                                <tr>
+                                    <td>作者网址</td>
+                                    <td class="homePage">www.iti6.com</td>
                                 </tr>
                                 </tbody>
                             </table>

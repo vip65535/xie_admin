@@ -9,14 +9,6 @@ class Link extends BaseModel
     public $timestamps = true;
     protected $fillable = ['id','name','href','email','type','created_at','updated_at',];
     protected $guarded = [];
-
-    const INDEX=1;//首页
-    const INNER=2;//内页
-    public static $TYPE=array(
-    self::INDEX=>array("name"=>"首页"),
-    self::INNER=>array("name"=>"内页"),
-    );
-
     /**
     id;//id(int)
     name;//名称(varchar)
@@ -26,14 +18,17 @@ class Link extends BaseModel
     created_at;//(datetime)
     updated_at;//(datetime)
     **/
-    public static function getById($id){
-        return Link::find($id);
-    }
+
+    const INDEX=1;//首页
+    const INNER=2;//内页
+    public static $TYPE=array(
+        self::INDEX=>array("name"=>"首页"),
+        self::INNER=>array("name"=>"内页"),
+    );
 
     public static function getByList($columns,$currentPage,$perPage,$input,$orderby,$is_page=true){
     $pageName = 'page';
     $param = array();
-
     if(!empty($input['id'])){
         $param[]= ['id', '=', $input['id']];
     }
@@ -60,11 +55,7 @@ class Link extends BaseModel
         $param[]= ['created_at', '>=', $startTime];
         $param[]= ['created_at', '<=', $endTime];
     }
-    /*DB::listen(function($sql) {
-        var_dump($sql->sql) ;
-    });*/
     list($key,$asc) = explode(" ",$orderby);
-
     if($is_page){
         return Link::where($param)->orderBy($key,$asc)->paginate($perPage, $columns, $pageName, $currentPage);
     }

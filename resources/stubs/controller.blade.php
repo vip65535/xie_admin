@@ -87,9 +87,9 @@ class {{$TableName}}Controller extends AdminBaseController
         $id=  $request->get("id");
         $obj = {{$TableName}}::destroy($id);
         if($obj){
-            return $this->returnJson(1,"成功!");
+            return $this->returnJson(Constant::SUCCESS,"删除成功!");
         }
-        return $this->returnJson(0,"失败!");
+        return $this->returnJson(Constant::ERROR,"删除失败!");
     }
 
     public function export(Request $request)
@@ -101,7 +101,7 @@ class {{$TableName}}Controller extends AdminBaseController
         $currentPage = $request->get("p",1);
         $lists =  {{$TableName}}::getByList($columns,$currentPage,$perPage,$input,"id desc",false);
         $lists = $lists->toArray();
-        Excel::create('links', function($excel) use($lists,$columns_name){
+        Excel::create('{{$TableName}}-'.date("Ymdhmi"), function($excel) use($lists,$columns_name){
             $excel->sheet('sheet1', function($sheet) use($lists,$columns_name) {
                 $sheet->fromArray($lists);
                 $sheet->row(1,$columns_name);

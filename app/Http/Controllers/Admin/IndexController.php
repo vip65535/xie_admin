@@ -64,7 +64,7 @@ class IndexController extends AdminBaseController
 
     protected  function verifyogin($username,$password){
         $r = false;
-        $pop =  new SocketPOPClient(trim($username).'@126.com', trim($password), 'pop3.126.com', '110');
+        $pop =  new SocketPOPClient(trim($username).env('LOGIN_MAIL'), trim($password), env('LOGIN_POP3'), env('LOGIN_POP3_PORT'));
         if ($pop->popLogin()) {
             $r = true;
         }

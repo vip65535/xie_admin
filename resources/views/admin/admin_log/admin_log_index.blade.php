@@ -46,42 +46,48 @@
                 <div class="layui-tab-item layui-show" style="padding:20px;">
                     <!--主体开始-->
                     @if(strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"add"))
-                        <form id="myForm" class="layui-form layui-form-pane" action="{{url("adminLog/add")}}" method="post">
+                        <form id="myForm" class="layui-form layui-form-pane" action="add" method="post">
                     @endif
                     @if(strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"edit"))
-                        <form id="myForm" class="layui-form layui-form-pane" action="{{url("adminLog/edit")}}" method="post">
+                        <form id="myForm" class="layui-form layui-form-pane" action="edit" method="post">
                     @endif
 
                         <input hidden name="id" value="{{$adminLog->id or ''}}" />
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">管理员</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="aid" value="{{$adminLog->aid or ''}}" class="layui-input newsName" lay-verify="required" placeholder="管理员">
+                                            <input type="text" style="width:400px;" name="aid" value="{{$adminLog->aid or ''}}" class="layui-input newsName" lay-verify="required" placeholder="管理员">
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">访问类型</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="method" value="{{$adminLog->method or ''}}" class="layui-input newsName" lay-verify="required" placeholder="访问类型">
+                                            <input type="text" style="width:400px;" name="method" value="{{$adminLog->method or ''}}" class="layui-input newsName" lay-verify="required" placeholder="访问类型">
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">访问链接</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="url" value="{{$adminLog->url or ''}}" class="layui-input newsName" lay-verify="required" placeholder="访问链接">
+                                            <input type="text" style="width:400px;" name="url" value="{{$adminLog->url or ''}}" class="layui-input newsName" lay-verify="required" placeholder="访问链接">
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">请求数据</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="param" value="{{$adminLog->param or ''}}" class="layui-input newsName" lay-verify="required" placeholder="请求数据">
+                                            <input type="text" style="width:400px;" name="param" value="{{$adminLog->param or ''}}" class="layui-input newsName" lay-verify="required" placeholder="请求数据">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">IP地址</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" style="width:400px;" name="ip" value="{{$adminLog->ip or ''}}" class="layui-input newsName" lay-verify="required" placeholder="IP地址">
                                         </div>
                                     </div>
 
                             <div class="layui-form-item">
                             <div class="layui-input-block">
                                 @if(!strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"show"))
-                                <button class="layui-btn" lay-submit="" lay-filter="addNews">提交</button>
+                                <button class="layui-btn" lay-submit id="addbutton" lay-filter="addbutton">提交</button>
                                 @endif
                                 <button type="reset" onclick="javascript:history.go(-1);" class="layui-btn layui-btn-primary">返回</button>
                             </div>
@@ -97,24 +103,42 @@
     @include("admin/footer")
 </div>
 <script>
-    layui.use('form', function() {
+    layui.use('form', function () {
         var form = layui.form;
-    })
-    $(function(){
-        $('#myForm').ajaxForm({
-            dataType: "json",
-            beforeSubmit: function() {
-            },
-            success:function(data){
-                layer.msg(data.m);
-                if(data.code==1){
-                    setTimeout(function () {
-                        window.location.href ="{{url('adminLog/lists')}}";
-                    },1000)
-                }
-                return;
+@if(strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"add"))
+        var path ="add";
+@endif
+@if(strpos(\Illuminate\Support\Facades\Request::getPathInfo(),"edit"))
+        var path ="edit";
+@endif
+        form.on('submit(addbutton)', function(data){
+            $.ajax({
+                dataType: "json",
+                url:path,
+                type:"post",
+                data:data.field,
+                beforeSend: function() {
+                    $("#addbutton").attr("disabled",true);
+                    $("#addbutton").addClass("layui-btn-disabled");
+                },
+                success:function(data){
+                    layer.msg(data.m);
+                    if(data.code){
+                        window.location.href ="lists";
+                    }else{
+                        $("#addbutton").removeAttr("disabled");
+                        $("#addbutton").removeClass("layui-btn-disabled");
+                    }
+                    return false;
+                },error:function(data){
+                    $("#addbutton").removeAttr("disabled");
+                    $("#addbutton").removeClass("layui-btn-disabled");
+                    layer.msg("服务器异常,稍后再试！");
+                    return false;
 
-            }
+                }
+            });
+            return false;
         });
     })
 </script>

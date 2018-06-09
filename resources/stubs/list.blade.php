@@ -13,17 +13,6 @@
     <link rel="icon" href="favicon.ico">
     @@include("admin.static")
     <link rel="stylesheet" href="@{{asset('css/admin/main.css')}}" media="all"/>
-    <style type="text/css">
-        .layui-table td, .layui-table th {
-            text-align: center;
-        }
-        .layui-table td {
-            padding: 5px;
-        }
-        .layui-input-inline{margin:10px 5px; }
-        .layui-inline a{height:36px;margin:10px 5px; }
-        .layui-btn i{margin-right:10px;}
-    </style>
 </head>
 <body class="main_body">
 <div class="layui-layout layui-layout-admin">
@@ -95,7 +84,7 @@
                                 <td>{{$itme-><?php echo$colum['column'];?>}}</td>
 @endif
 @endforeach
-                                <td>
+                                <td nowrap="true">
                                     @@if(\App\Model\Admin::isAuth("/<?php echo $tableName?>/show"))
                                         <a href="show?id=@{{$itme->id}}"><i class="iconfont icon-dayinmoban"></i> 查看</a>
                                     @@endif
