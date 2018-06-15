@@ -3,9 +3,9 @@
 
 ##一个只有基础框架的后台管理系统，基于laravel5.5 与Layui2.3
 >
-[开发者博客]（http://www.iti6.com）
+开发者博客：http://www.iti6.com
 >
-[演示站]（http://testadmin.iti6.com）
+演示站：http://testadmin.iti6.com
 >1. clone 工程
 >2. composer install
 >3. 导入data_init.sql
