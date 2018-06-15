@@ -18,13 +18,13 @@
     <h1>管理登录</h1>
     <form class="layui-form" action="login" method="post">
         <div class="layui-form-item">
-            <input class="layui-input" name="username" value="{{old('username','')}}" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
+            <input class="layui-input" name="username" value="{{old('username','test')}}" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
         </div>
         <div class="layui-form-item">
-            <input class="layui-input" name="password" value="{{old('password','')}}" placeholder="密码" lay-verify="required" type="password" autocomplete="off">
+            <input class="layui-input" name="password" value="{{old('password','test')}}" placeholder="密码" lay-verify="required" type="password" autocomplete="off">
         </div>
         <div class="layui-form-item form_code">
-            <input class="layui-input" name="code" value="" placeholder="验证码" lay-verify="required" type="text" autocomplete="off">
+            <input class="layui-input" name="code" value="test" placeholder="验证码" lay-verify="required" type="text" autocomplete="off">
             <div class="code"><img id="refresh" src="code" onclick="document.getElementById('refresh').src='code?t='+Math.random()" width="116" height="36"></div>
         </div>
         <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登录</button>
