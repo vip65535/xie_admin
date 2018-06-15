@@ -156,8 +156,7 @@
                     location.href ="lists";
                 }
             },"json").error(function(xhr, status, info){
-                alert(xhr.status + ':' +xhr.statusText);
-                alert(status + ':' + info);
+                layer.msg(xhr.status + ':' +xhr.statusText);
             });
             layer.close(index);
         });
