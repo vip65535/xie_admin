@@ -14,10 +14,13 @@
 
 
 ##演示图片
-![tu1](https://raw.githubusercontent.com/iti6/xie_admin/master/public/images/test/1.png)
 >
-[tu2]:http://testadmin.iti6.com/images/test/2.png
+![登录](https://raw.githubusercontent.com/iti6/xie_admin/master/public/images/test/0.png)
 >
-[tu3]:http://testadmin.iti6.com/images/test/3.png
+![主页](https://raw.githubusercontent.com/iti6/xie_admin/master/public/images/test/1.png)
 >
-[tu4]:http://testadmin.iti6.com/images/test/4.png
+![权限](https://raw.githubusercontent.com/iti6/xie_admin/master/public/images/test/2.png)
+>
+![管理员日志](https://raw.githubusercontent.com/iti6/xie_admin/master/public/images/test/3.png)
+>
+![管理员编辑](https://raw.githubusercontent.com/iti6/xie_admin/master/public/images/test/4.png)
