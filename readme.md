@@ -14,7 +14,7 @@
 
 
 ##演示图片
-![tu1](https://github.com/iti6/xie_admin/master/public/images/test/1.png)
+![tu1](https://raw.githubusercontent.com/iti6/xie_admin/master/public/images/test/1.png)
 >
 [tu2]:http://testadmin.iti6.com/images/test/2.png
 >
