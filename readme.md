@@ -14,10 +14,10 @@
 
 
 ##演示图片
-[tu1]（http://testadmin.iti6.com/images/test/1.png）
+[tu1]:http://testadmin.iti6.com/images/test/1.png
 >
-[tu2]（http://testadmin.iti6.com/images/test/2.png）
+[tu2]:http://testadmin.iti6.com/images/test/2.png
 >
-[tu3]（http://testadmin.iti6.com/images/test/3.png）
+[tu3]:http://testadmin.iti6.com/images/test/3.png
 >
-[tu4]（http://testadmin.iti6.com/images/test/4.png）
+[tu4]:http://testadmin.iti6.com/images/test/4.png
