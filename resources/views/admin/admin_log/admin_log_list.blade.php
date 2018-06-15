@@ -155,9 +155,9 @@
                 if(data.code==1){
                     location.href ="lists";
                 }
-            },"json").error(functon(e){
-                layer.msg(e);
-            })
+            },"json").error(function(err){
+                layer.msg(err);
+            });
             layer.close(index);
         });
     }
