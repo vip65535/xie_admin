@@ -6,7 +6,8 @@
 开发者博客：http://www.iti6.com
 >
 演示站：http://testadmin.iti6.com
-##使用步骤
+
+## 使用步骤
 >1. clone 工程
 >2. composer install
 >3. 导入data_init.sql
@@ -15,7 +16,7 @@
 >6. 首次登录可用账户：test  密码：test 进行登录
 
 
-##演示图片
+## 演示图片
 >
 ![登录](https://raw.githubusercontent.com/iti6/xie_admin/master/public/images/test/0.png)
 >
