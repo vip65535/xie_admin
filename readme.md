@@ -18,7 +18,7 @@
 
 ## 二次开发
 >1. 项目中目前已有权限和功能控制模块。现以在左侧菜单栏中添加学生管理为例，描述自创建模版的使用
->2. 在数据库中添加students表，添加 id、name、grade字段（标明字段描述），并填入至少一条记录
+>2. 在数据库中添加students表，添加 id、name、grade、updated_at（必需字段）、created_at（必需字段），并标明字段描述，填入至少一条记录
 >3. 执行 php artisan xiely:make students,会在Controller 和 Model中分别生成students表对应的代码
 >4. 在系统管理-权限节点中编辑上面新添加的模块，功能名称设置为"学生管理"
 
