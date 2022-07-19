@@ -3,9 +3,9 @@
 
 ## 一个只有基础框架的后台管理系统，基于laravel5.5 与Layui2.3
 >
-开发者博客：http://www.iti6.com
+开发者博客：http://www.xielianying.com
 >
-演示站：http://testadmin.iti6.com
+演示站：http://testadmin.xiely.cn
 
 ## 搭建步骤
 
